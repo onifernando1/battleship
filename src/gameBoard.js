@@ -9,11 +9,24 @@ const GameBoard = function () {
 
   let board = createBoard();
 
-  const placeShipHorizontally = function (ship, startRowCoords) {
+  const changeShipCoords = function (ship, startRowCoords) {
     for (let i = 0; i < ship.shipLength; i++) {
       let currentCoord = [startRowCoords, i];
       ship.coords.push(currentCoord);
     }
+  };
+
+  const moveGameboardShip = function (ship) {
+    ship.coords.forEach((coord) => {
+      let outer = coord[0];
+      let inner = coord[1];
+      GameBoard.board[outer][inner] = ship;
+    });
+  };
+
+  const placeShipHorizontally = function (ship, startRowCoords) {
+    changeShipCoords(ship, startRowCoords);
+    moveGameboardShip(ship);
   };
 
   return { board, placeShipHorizontally };
