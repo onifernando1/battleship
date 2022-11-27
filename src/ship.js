@@ -2,6 +2,7 @@ const Ship = function (length) {
   const shipLength = length;
   let numberOfHits = 0;
   let sunk = false;
+  let coords = [];
 
   const hit = function () {
     numberOfHits += 1;
@@ -18,7 +19,7 @@ const Ship = function (length) {
     }
   };
 
-  return { shipLength, numberOfHits, isSunk, hit };
+  return { shipLength, numberOfHits, isSunk, hit, coords };
 };
 
 export { Ship };

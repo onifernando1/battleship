@@ -19,4 +19,3 @@ describe("Ship", () => {
     expect(ship.isSunk(3, 4)).toBe(false);
   });
 });
-console.log("");
