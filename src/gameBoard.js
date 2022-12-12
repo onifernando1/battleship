@@ -67,19 +67,33 @@ const GameBoard = function () {
   };
 
   const allSunk = function () {
-    let allShipsSunk = true;
+    let allShipsSunk = [];
     currentShips.forEach((ship) => {
       if (ship.sunk == false) {
-        return false;
-      }
-
-      if (allShipsSunk == true) {
-        return true;
+        allShipsSunk.push(false);
+      } else {
+        allShipsSunk.push(true);
       }
     });
+
+    console.log(allShipsSunk);
+
+    if (allShipsSunk.includes(false)) {
+      return false;
+    } else {
+      return true;
+    }
   };
 
-  return { board, horizontal, vertical, receiveAttack, missedCoords };
+  return {
+    board,
+    horizontal,
+    vertical,
+    receiveAttack,
+    missedCoords,
+    currentShips,
+    allSunk,
+  };
 };
 
 export { GameBoard };

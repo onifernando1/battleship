@@ -49,14 +49,51 @@ describe("Gameboard can receive attacks", () => {
   });
 });
 
-describe("Gameboard knows when all ships not sunk", () => {
+describe("Returns false if ships not all sunk", () => {
+  const ship = new Ship(2);
+  ship.sunk = false;
+  const gameBoard = new GameBoard();
+  gameBoard.currentShips.push(ship);
+
   test("Checks if all current ships not sunk", () => {
-    expect(gameBoard.allSunk).toEqual(false);
+    expect(gameBoard.allSunk()).toEqual(false);
   });
 });
 
 describe("Gameboard knows when all ships sunk", () => {
-  test("Checks if all current ships sunk", () => {
-    expect(gameBoard.allSunk).toEqual(true);
+  const ship = new Ship(2);
+  ship.sunk = true;
+  const gameBoard = new GameBoard();
+
+  test("Checks if all current ships sunk with one ship", () => {
+    expect(gameBoard.allSunk()).toEqual(true);
+  });
+});
+
+describe("Gameboard knows when all ships sunk", () => {
+  const ship = new Ship(2);
+  const gameBoard = new GameBoard();
+  const ship2 = new Ship(2);
+  ship.sunk = true;
+  ship2.sunk = false;
+  gameBoard.currentShips.push(ship);
+  gameBoard.currentShips.push(ship2);
+
+  test("Returns false if one ship is sunk and one isn't", () => {
+    expect(gameBoard.allSunk()).toEqual(false);
+  });
+});
+
+describe("Gameboard knows when all ships sunk", () => {
+  const ship = new Ship(2);
+  const gameBoard = new GameBoard();
+  const ship2 = new Ship(2);
+  ship.sunk = true;
+  ship2.sunk = true;
+  gameBoard.currentShips.push(ship);
+  gameBoard.currentShips.push(ship2);
+
+  test("Returns true if both ships sunk", () => {
+    expect(gameBoard.allSunk()).toEqual(true);
   });
 });
