@@ -48,3 +48,15 @@ describe("Gameboard can receive attacks", () => {
     expect(gameBoard.missedCoords[0]).toEqual(expect.arrayContaining([0, 3]));
   });
 });
+
+describe("Gameboard knows when all ships not sunk", () => {
+  test("Checks if all current ships not sunk", () => {
+    expect(gameBoard.allSunk).toEqual(false);
+  });
+});
+
+describe("Gameboard knows when all ships sunk", () => {
+  test("Checks if all current ships sunk", () => {
+    expect(gameBoard.allSunk).toEqual(true);
+  });
+});
