@@ -2,6 +2,7 @@ const GameBoard = function () {
   let shipPlacementMode = "horizontal";
   let currentShips = [];
   let sunkShips = [];
+  const missedCoords = [];
 
   let board = [
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
@@ -60,10 +61,12 @@ const GameBoard = function () {
     if (checkNestedArray(ship.coords, coords)) {
       ship.hit();
       console.log("called ship hit");
+    } else {
+      missedCoords.push(coords);
     }
   };
 
-  return { board, horizontal, vertical, receiveAttack };
+  return { board, horizontal, vertical, receiveAttack, missedCoords };
 };
 
 export { GameBoard };

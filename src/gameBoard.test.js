@@ -45,6 +45,6 @@ describe("Gameboard can receive attacks", () => {
   });
 
   test("If a ship is not hit, records coordinates of missed shot", () => {
-    expect();
+    expect(gameBoard.missedCoords[0]).toEqual(expect.arrayContaining([0, 3]));
   });
 });
