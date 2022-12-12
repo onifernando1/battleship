@@ -46,7 +46,24 @@ const GameBoard = function () {
     }
   };
 
-  return { board, horizontal, vertical };
+  const checkNestedArray = function (array, coords) {
+    let match = false;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].includes(coords[0]) && array[i].includes(coords[1])) {
+        match = true;
+      }
+    }
+    return match;
+  };
+
+  const receiveAttack = function (ship, coords) {
+    if (checkNestedArray(ship.coords, coords)) {
+      ship.hit();
+      console.log("called ship hit");
+    }
+  };
+
+  return { board, horizontal, vertical, receiveAttack };
 };
 
 export { GameBoard };

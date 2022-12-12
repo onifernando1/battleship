@@ -4,11 +4,13 @@ describe("Ship", () => {
   const ship = new Ship();
 
   test("Hit increases ship hits by one", () => {
-    expect(ship.hit()).toBe(1);
+    ship.hit();
+    expect(ship.numberOfHits).toBe(1);
   });
 
   test("Hit increases ship hits by two", () => {
-    expect(ship.hit()).toBe(2);
+    ship.hit();
+    expect(ship.numberOfHits).toBe(2);
   });
 
   test("Ship sinks when hits = length", () => {

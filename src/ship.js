@@ -5,8 +5,7 @@ const Ship = function (length) {
   let coords = [];
 
   const hit = function () {
-    numberOfHits += 1;
-    return numberOfHits;
+    this.numberOfHits += 1;
   };
 
   const isSunk = function (length, numberOfHits) {

@@ -28,14 +28,20 @@ describe("Gameboard ship length two - horizontal and vertical placement", () => 
 describe("Gameboard can receive attacks", () => {
   const gameBoard = new GameBoard();
   const ship = new Ship(2);
-  ship.coords = [
-    [0, 1],
-    [0, 2],
-  ];
+  ship.coords.push([0, 1]);
+  ship.coords.push([0, 2]);
   gameBoard.receiveAttack(ship, [0, 1]);
 
+  const ship2 = new Ship(2);
+  ship2.coords.push([0, 1], [0, 0]);
+  gameBoard.receiveAttack(ship2, [0, 3]);
+
   test("If a ship is hit, sends hit function", () => {
-    expect(ship.hit).toHaveBeenCalled();
+    expect(ship.numberOfHits).toEqual(1);
+  });
+
+  test("If a ship is not hit, don't sends hit function", () => {
+    expect(ship2.numberOfHits).toEqual(0);
   });
 
   test("If a ship is not hit, records coordinates of missed shot", () => {
