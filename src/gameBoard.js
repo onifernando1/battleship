@@ -1,5 +1,7 @@
 const GameBoard = function () {
   let shipPlacementMode = "horizontal";
+  let currentShips = [];
+  let sunkShips = [];
 
   let board = [
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
