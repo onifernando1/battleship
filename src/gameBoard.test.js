@@ -1,38 +1,26 @@
 import { GameBoard } from "./gameBoard";
 import { Ship } from "./ship";
 
-describe("Gameboard ship length one", () => {
-  const gameBoard = new GameBoard();
-  const ship = new Ship(1);
-  gameBoard.placeShipHorizontally(ship, 0);
-
-  test("Places a ship of length 1 horizontally at 0,0", () => {
-    expect(ship.coords[0]).toEqual(expect.arrayContaining([0, 0]));
-  });
-});
-
-describe("Gameboard ship length two", () => {
+describe("Gameboard ship length two - horizontal and vertical placement", () => {
   const gameBoard = new GameBoard();
   const ship = new Ship(2);
-  gameBoard.placeShipHorizontally(ship, 0);
+  gameBoard.horizontal(ship, 0, 0);
+  const ship2 = new Ship(2);
+  gameBoard.vertical(ship2, 0, 0);
 
   test("Places a ship of length 2 horizontally at 0,0", () => {
     expect(ship.coords[0]).toEqual(expect.arrayContaining([0, 0]));
-    expect(ship.coords[1]).toEqual(expect.arrayContaining([0, 1]));
   });
-});
-
-describe("Check gameboard board changes", () => {
-  const gameBoard = new GameBoard();
-  const ship = new Ship(2);
-  ship.coords = [
-    [0, 1],
-    [0, 2],
-  ];
-  gameBoard.moveGameboardShip(ship);
 
   test("Places a ship of length 2 horizontally at 0,0", () => {
-    expect(ship.coords[0]).toEqual(expect.arrayContaining([0, 0]));
     expect(ship.coords[1]).toEqual(expect.arrayContaining([0, 1]));
+  });
+
+  test("Places ship of length 2 vertically at 0,0", () => {
+    expect(ship2.coords[0]).toEqual(expect.arrayContaining([0, 0]));
+  });
+
+  test("Places ship of length 2 vertically at 0,0", () => {
+    expect(ship2.coords[1]).toEqual(expect.arrayContaining([1, 0]));
   });
 });

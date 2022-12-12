@@ -1,35 +1,48 @@
 const GameBoard = function () {
-  const createBoard = function () {
-    let x = new Array(10);
-    for (let i = 0; i < x.length; i++) {
-      x[i] = new Array(10);
-    }
-    return x;
-  };
+  let board = [
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+    [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
+  ];
 
-  let board = createBoard();
-
-  const changeShipCoords = function (ship, startRowCoords) {
+  const horizontal = function (ship, startRowCoords, startColumnCoords) {
     for (let i = 0; i < ship.shipLength; i++) {
-      let currentCoord = [startRowCoords, i];
+      let currentCoord = [startRowCoords, i + startColumnCoords];
       ship.coords.push(currentCoord);
     }
   };
 
-  const moveGameboardShip = function (ship) {
+  const vertical = function (ship, startRowCoords, startColumnCoords) {
+    for (let i = 0; i < ship.shipLength; i++) {
+      let currentCoord = [i + startRowCoords, startColumnCoords];
+      ship.coords.push(currentCoord);
+    }
+  };
+
+  const placeShip = function (ship) {
     ship.coords.forEach((coord) => {
       let outer = coord[0];
       let inner = coord[1];
-      GameBoard.board[outer][inner] = ship;
+      board[outer][inner] = ship;
     });
   };
 
-  const placeShipHorizontally = function (ship, startRowCoords) {
-    changeShipCoords(ship, startRowCoords);
-    moveGameboardShip(ship);
+  const setShipPosition = function (ship, startRowCoords, startColumnCoords) {
+    //if shipPlacementMode == ("horizontal")
+    horizontal(ship, startRowCoords, startColumnCoords);
+    //if shipPlacementMode == ("vertical")
+    vertical(ship, startRowCoords, startColumnCoords);
+    moveGameboardShipHorizontally(ship);
   };
 
-  return { board, placeShipHorizontally };
+  return { board, horizontal, vertical };
 };
 
 export { GameBoard };
