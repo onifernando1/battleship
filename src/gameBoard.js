@@ -1,4 +1,6 @@
 const GameBoard = function () {
+  let shipPlacementMode = "horizontal";
+
   let board = [
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
@@ -35,11 +37,11 @@ const GameBoard = function () {
   };
 
   const setShipPosition = function (ship, startRowCoords, startColumnCoords) {
-    //if shipPlacementMode == ("horizontal")
-    horizontal(ship, startRowCoords, startColumnCoords);
-    //if shipPlacementMode == ("vertical")
-    vertical(ship, startRowCoords, startColumnCoords);
-    moveGameboardShipHorizontally(ship);
+    if (shipPlacementMode == "horizontal") {
+      horizontal(ship, startRowCoords, startColumnCoords);
+    } else if (shipPlacementMode == "vertical") {
+      vertical(ship, startRowCoords, startColumnCoords);
+    }
   };
 
   return { board, horizontal, vertical };
