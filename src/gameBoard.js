@@ -1,3 +1,5 @@
+//check for legal moves
+
 const GameBoard = function () {
   let shipPlacementMode = "horizontal";
   let currentShips = [];
