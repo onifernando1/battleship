@@ -62,7 +62,6 @@ const GameBoard = function () {
   const receiveAttack = function (ship, coords) {
     if (checkNestedArray(ship.coords, coords)) {
       ship.hit();
-      console.log("called ship hit");
     } else {
       missedCoords.push(coords);
     }
@@ -77,8 +76,6 @@ const GameBoard = function () {
         allShipsSunk.push(true);
       }
     });
-
-    console.log(allShipsSunk);
 
     if (allShipsSunk.includes(false)) {
       return false;

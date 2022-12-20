@@ -1,8 +1,8 @@
 import { Ship } from "./ship";
 import { GameBoard } from "./gameBoard";
+import { Player } from "./player";
 
-const shippy = Ship(1);
-const gameBoard = GameBoard();
-shippy.sunk = false;
-gameBoard.currentShips.push(shippy);
-console.log(gameBoard.allSunk());
+const gb = GameBoard();
+const player = Player();
+gb.missedCoords.push([0, 1]);
+player.randomAttack(gb);
