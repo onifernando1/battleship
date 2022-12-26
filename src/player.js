@@ -1,3 +1,5 @@
+import { GameBoard } from "./gameBoard";
+
 const Player = function () {
   const name = "";
   let legalMoves = [];
@@ -14,6 +16,34 @@ const Player = function () {
     }
   };
 
+  const checkMissedCoordsForMatch = function (
+    coords,
+    opponentGameboardMissedCoordsArray
+  ) {
+    let match = false;
+    for (let i = 0; i < opponentGameboardMissedCoordsArray.length; i++) {
+      console.log(opponentGameboardMissedCoordsArray[i][0]);
+      console.log(opponentGameboardMissedCoordsArray[i][1]);
+      console.log(coords[0] == opponentGameboardMissedCoordsArray[i][0]);
+      console.log(coords[1] == opponentGameboardMissedCoordsArray[i][1]);
+
+      if (
+        coords[0] == opponentGameboardMissedCoordsArray[i][0] &&
+        coords[1] == opponentGameboardMissedCoordsArray[i][1]
+      ) {
+        match = true;
+      }
+    }
+
+    if (match == true) {
+      console.log("IT IS A MATCH");
+      return true;
+    } else {
+      console.log("IT IS NOT A MATCH");
+      return false;
+    }
+  };
+
   function getRandomInt(max) {
     return Math.floor(Math.random() * max);
   }
@@ -22,19 +52,41 @@ const Player = function () {
     let x = getRandomInt(10);
     let y = getRandomInt(10);
     console.log(opponentGameboard.missedCoords);
-    while (
-      opponentGameboard.board[x][y] != " " &&
-      opponentGameboard.missedCoords.includes([x, y] == false)
-    ) {
+
+    let missedCoordMatch = false;
+    missedCoordMatch = checkMissedCoordsForMatch(
+      [x, y],
+      opponentGameboard.missedCoords
+    );
+    console.log(`missedCoordsMatch ${missedCoordMatch}`);
+    // console.log(
+    //   `opponentgameboard.board[x][y] = ${opponentGameboard.board[x][y]}`
+    // );
+    // console.log(`missedcoordmatch = ${missedCoordMatch}`);
+    // console.log(`x,y, ${(x, y)}`);
+
+    while (missedCoordMatch == true) {
+      console.log("in while");
       x = getRandomInt(9);
       y = getRandomInt(9);
+      console.log(`while x y ${[x, y]}`);
+      missedCoordMatch = checkMissedCoordsForMatch(
+        [x, y],
+        opponentGameboard.missedCoords
+      );
     }
     let randomMove = [x, y];
     console.log(randomMove);
 
-    return randomMove;
+    // return randomMove;
   };
-  return { name, randomAttack, getLegalMoves, randomAttack };
+  return {
+    name,
+    randomAttack,
+    getLegalMoves,
+    randomAttack,
+    checkMissedCoordsForMatch,
+  };
 };
 
 export { Player };

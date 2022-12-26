@@ -4,5 +4,10 @@ import { Player } from "./player";
 
 const gb = GameBoard();
 const player = Player();
-gb.missedCoords.push([0, 1]);
-player.randomAttack(gb);
+
+let marray = [
+  [0, 1],
+  [0, 0],
+];
+
+console.log(player.checkMissedCoordsForMatch([0, 0], marray));
