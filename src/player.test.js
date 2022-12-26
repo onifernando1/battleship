@@ -37,11 +37,20 @@ describe("Checks missed coords", () => {
     [0, 0],
   ];
 
+  let gb = GameBoard();
+  gb.missedCoords.push([0, 1]);
+
   test("If 0,0 expect match (true)", () => {
     expect(player.checkMissedCoordsForMatch([0, 0], marray)).toEqual(true);
   });
 
   test("If 3,0 expect no match (false)", () => {
     expect(player.checkMissedCoordsForMatch([3, 0], marray)).toEqual(false);
+  });
+
+  test("If 0,1 expect match (false) with gameboard", () => {
+    expect(player.checkMissedCoordsForMatch([3, 0], gb.missedCoords)).toEqual(
+      false
+    );
   });
 });
