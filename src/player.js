@@ -4,6 +4,7 @@ const Player = function () {
   const name = "";
   let legalMoves = [];
   let previousMoves = [];
+  let availableMoves = [];
 
   const getLegalMoves = function (opponentGameboard) {
     legalMoves = [];
@@ -21,6 +22,8 @@ const Player = function () {
     opponentGameboardMissedCoordsArray
   ) {
     let match = false;
+    availableMoves = [];
+
     for (let i = 0; i < opponentGameboardMissedCoordsArray.length; i++) {
       console.log(opponentGameboardMissedCoordsArray[i][0]);
       console.log(opponentGameboardMissedCoordsArray[i][1]);
@@ -32,8 +35,12 @@ const Player = function () {
         coords[1] == opponentGameboardMissedCoordsArray[i][1]
       ) {
         match = true;
+      } else {
+        availableMoves.push([coords[0], coords[1]]);
       }
     }
+
+    console.log(`available : ${availableMoves}`);
 
     if (match == true) {
       console.log("IT IS A MATCH");
@@ -49,26 +56,12 @@ const Player = function () {
   }
 
   const randomAttack = function (opponentGameboard) {
-    let x = getRandomInt(10);
-    let y = getRandomInt(10);
-    console.log(opponentGameboard.missedCoords);
-
-    let missedCoordMatch = false;
-    missedCoordMatch = checkMissedCoordsForMatch(
-      [x, y],
-      opponentGameboard.missedCoords
-    );
-    console.log(`missedCoordsMatch ${missedCoordMatch}`);
-    // console.log(
-    //   `opponentgameboard.board[x][y] = ${opponentGameboard.board[x][y]}`
-    // );
-    // console.log(`missedcoordmatch = ${missedCoordMatch}`);
-    // console.log(`x,y, ${(x, y)}`);
+    let missedCoordMatch = true;
 
     while (missedCoordMatch == true) {
       console.log("in while");
-      x = getRandomInt(9);
-      y = getRandomInt(9);
+      let x = getRandomInt(9);
+      let y = getRandomInt(9);
       console.log(`while x y ${[x, y]}`);
       missedCoordMatch = checkMissedCoordsForMatch(
         [x, y],

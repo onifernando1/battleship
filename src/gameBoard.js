@@ -5,6 +5,7 @@ const GameBoard = function () {
   let currentShips = [];
   let sunkShips = [];
   const missedCoords = [];
+  let potentialMoves = [];
 
   let board = [
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
@@ -18,6 +19,14 @@ const GameBoard = function () {
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
   ];
+
+  const getPotentialMoves = function () {
+    for (let i = 0; i < 10; i++) {
+      for (let a = 0; a < 10; a++) {
+        potentialMoves.push([a, i]);
+      }
+    }
+  };
 
   const horizontal = function (ship, startRowCoords, startColumnCoords) {
     for (let i = 0; i < ship.shipLength; i++) {
@@ -59,11 +68,25 @@ const GameBoard = function () {
     return match;
   };
 
+  const matchMove = function (arrayToFindMatch, coords) {
+    arrayToFindMatch.forEach((move) => {
+      if (move[0] == coords[0] && move[1] == coords[1]) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  };
+
   const receiveAttack = function (ship, coords) {
     if (checkNestedArray(ship.coords, coords)) {
       ship.hit();
     } else {
       missedCoords.push(coords);
+    }
+
+    if (matchMove(potentialMoves, coords)) {
+      potentialMoves.remove(coords); // need to code this
     }
   };
 
@@ -92,6 +115,8 @@ const GameBoard = function () {
     missedCoords,
     currentShips,
     allSunk,
+    getPotentialMoves,
+    potentialMoves,
   };
 };
 
