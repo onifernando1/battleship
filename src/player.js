@@ -57,7 +57,6 @@ const Player = function () {
 
   const randomAttack = function (opponentGameboard) {
     let randomIndex = getRandomInt(opponentGameboard.potentialMoves.length - 1);
-    // console.log(randomIndex);
     let randomMove = opponentGameboard.potentialMoves[randomIndex];
     return randomMove;
   };
