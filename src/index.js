@@ -3,7 +3,9 @@ import { GameBoard } from "./gameBoard";
 import { Player } from "./player";
 import { Game } from "./game";
 
-const gb = GameBoard();
+const gb1 = GameBoard();
+const gb2 = GameBoard();
+
 // const game = Game();
 // const player = Player();
 // const ship = Ship();
@@ -13,4 +15,5 @@ const gb = GameBoard();
 // console.log(gb.potentialMoves.length);
 // gb.receiveAttack(ship, [0, 3]);
 // console.log(gb.potentialMoves.length);
-gb.drawBoard();
+gb1.drawBoard();
+gb2.drawBoard();
