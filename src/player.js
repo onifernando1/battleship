@@ -56,23 +56,12 @@ const Player = function () {
   }
 
   const randomAttack = function (opponentGameboard) {
-    let missedCoordMatch = true;
-
-    while (missedCoordMatch == true) {
-      console.log("in while");
-      let x = getRandomInt(9);
-      let y = getRandomInt(9);
-      console.log(`while x y ${[x, y]}`);
-      missedCoordMatch = checkMissedCoordsForMatch(
-        [x, y],
-        opponentGameboard.missedCoords
-      );
-    }
-    let randomMove = [x, y];
-    console.log(randomMove);
-
-    // return randomMove;
+    let randomIndex = getRandomInt(opponentGameboard.potentialMoves.length - 1);
+    console.log(randomIndex);
+    let randomMove = opponentGameboard.potentialMoves[randomIndex];
+    return randomMove;
   };
+
   return {
     name,
     randomAttack,

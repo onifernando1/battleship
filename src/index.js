@@ -20,17 +20,19 @@ let moves = gb.potentialMoves;
 
 // player.randomAttack(gb);
 
-let example = [];
-example.push([0, 1]);
-example.push([0, 2]);
-console.log(example);
+// let example = [];
+// example.push([0, 1]);
+// example.push([0, 2]);
+// console.log(example);
 
-function removeAllInstances(arr, item) {
-  for (let i = arr.length; i--; ) {
-    if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
-  }
-}
+// function removeAllInstances(arr, item) {
+//   for (let i = arr.length; i--; ) {
+//     if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
+//   }
+// }
 
-removeAllInstances(example, [0, 1]);
+// removeAllInstances(example, [0, 1]);
 
-console.log(example);
+// console.log(example);
+gb.getPotentialMoves();
+console.log(player.randomAttack(gb));
