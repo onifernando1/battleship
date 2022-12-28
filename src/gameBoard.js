@@ -91,8 +91,9 @@ const GameBoard = function () {
   }
 
   const receiveAttack = function (ship, coords) {
-    if (checkNestedArray(ship.coords, coords)) {
+    if (matchMove(ship.coords, coords)) {
       ship.hit();
+      console.log("hit");
     } else {
       missedCoords.push(coords);
     }
