@@ -78,6 +78,12 @@ const GameBoard = function () {
     });
   };
 
+  function removeAllInstances(arr, item) {
+    for (let i = arr.length; i--; ) {
+      if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
+    }
+  }
+
   const receiveAttack = function (ship, coords) {
     if (checkNestedArray(ship.coords, coords)) {
       ship.hit();
@@ -86,7 +92,7 @@ const GameBoard = function () {
     }
 
     if (matchMove(potentialMoves, coords)) {
-      potentialMoves.remove(coords); // need to code this
+      removeAllInstances(potentialMoves, coords); // need to code this
     }
   };
 
