@@ -113,3 +113,21 @@ describe("Gameboard array matching", () => {
     expect(gameBoard.matchMove(a, [0, 5])).toEqual(false);
   });
 });
+
+describe("Gameboard array removal", () => {
+  const gameBoard = new GameBoard();
+  let a = [
+    [0, 1],
+    [0, 3],
+  ];
+
+  gameBoard.removeAllInstances(a, [0, 1]);
+
+  test("Removes item 0,1 from array", () => {
+    expect(a[0]).toEqual([0, 3]);
+  });
+
+  test("Match move returns false if no match", () => {
+    expect(a.length).toEqual(1);
+  });
+});
