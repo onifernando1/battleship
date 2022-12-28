@@ -97,3 +97,19 @@ describe("Gameboard knows when all ships sunk", () => {
     expect(gameBoard.allSunk()).toEqual(true);
   });
 });
+
+describe("Gameboard array matching", () => {
+  const gameBoard = new GameBoard();
+  let a = [
+    [0, 1],
+    [0, 3],
+  ];
+
+  test("Match move returns true if match", () => {
+    expect(gameBoard.matchMove(a, [0, 1])).toEqual(true);
+  });
+
+  test("Match move returns false if no match", () => {
+    expect(gameBoard.matchMove(a, [0, 5])).toEqual(false);
+  });
+});

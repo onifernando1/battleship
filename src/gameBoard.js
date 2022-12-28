@@ -69,13 +69,19 @@ const GameBoard = function () {
   };
 
   const matchMove = function (arrayToFindMatch, coords) {
+    let match = false;
     arrayToFindMatch.forEach((move) => {
       if (move[0] == coords[0] && move[1] == coords[1]) {
-        return true;
-      } else {
-        return false;
+        console.log("true");
+        match = true;
       }
     });
+
+    if (match == true) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   function removeAllInstances(arr, item) {
@@ -123,6 +129,7 @@ const GameBoard = function () {
     allSunk,
     getPotentialMoves,
     potentialMoves,
+    matchMove,
   };
 };
 

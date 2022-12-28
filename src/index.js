@@ -35,4 +35,5 @@ let moves = gb.potentialMoves;
 
 // console.log(example);
 gb.getPotentialMoves();
-console.log(player.randomAttack(gb));
+// console.log(player.randomAttack(gb));
+console.log(gb.matchMove([1], 1));

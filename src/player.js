@@ -25,10 +25,10 @@ const Player = function () {
     availableMoves = [];
 
     for (let i = 0; i < opponentGameboardMissedCoordsArray.length; i++) {
-      console.log(opponentGameboardMissedCoordsArray[i][0]);
-      console.log(opponentGameboardMissedCoordsArray[i][1]);
-      console.log(coords[0] == opponentGameboardMissedCoordsArray[i][0]);
-      console.log(coords[1] == opponentGameboardMissedCoordsArray[i][1]);
+      // console.log(opponentGameboardMissedCoordsArray[i][0]);
+      // console.log(opponentGameboardMissedCoordsArray[i][1]);
+      // console.log(coords[0] == opponentGameboardMissedCoordsArray[i][0]);
+      // console.log(coords[1] == opponentGameboardMissedCoordsArray[i][1]);
 
       if (
         coords[0] == opponentGameboardMissedCoordsArray[i][0] &&
@@ -40,13 +40,13 @@ const Player = function () {
       }
     }
 
-    console.log(`available : ${availableMoves}`);
+    // console.log(`available : ${availableMoves}`);
 
     if (match == true) {
-      console.log("IT IS A MATCH");
+      // console.log("IT IS A MATCH");
       return true;
     } else {
-      console.log("IT IS NOT A MATCH");
+      // console.log("IT IS NOT A MATCH");
       return false;
     }
   };
@@ -57,7 +57,7 @@ const Player = function () {
 
   const randomAttack = function (opponentGameboard) {
     let randomIndex = getRandomInt(opponentGameboard.potentialMoves.length - 1);
-    console.log(randomIndex);
+    // console.log(randomIndex);
     let randomMove = opponentGameboard.potentialMoves[randomIndex];
     return randomMove;
   };
