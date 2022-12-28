@@ -120,6 +120,23 @@ const GameBoard = function () {
     }
   };
 
+  const drawBoard = function () {
+    console.log("Hi");
+    const container = document.getElementsByClassName("container")[0];
+    console.log(container);
+    let boardContainer = document.createElement("div");
+    boardContainer.classList.add("board-container");
+    container.appendChild(boardContainer);
+    board.forEach((board) => {
+      board.forEach((innerSquare) => {
+        let individualSquare = document.createElement("div");
+        individualSquare.classList.add("individual-square");
+        boardContainer.appendChild(individualSquare);
+        individualSquare.innerHTML = innerSquare;
+      });
+    });
+  };
+
   return {
     board,
     horizontal,
@@ -132,6 +149,7 @@ const GameBoard = function () {
     potentialMoves,
     matchMove,
     removeAllInstances,
+    drawBoard,
   };
 };
 
