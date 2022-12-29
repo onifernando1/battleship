@@ -1,14 +1,19 @@
 .individual-square {
-  background-color: red;
+  background-color: white;
   margin: 5px;
   height: 50px;
   width: 50px;
 }
 
 .board-container {
-  background-color: yellow;
+  background-color: black;
   /* margin: 10px; */
   width: 50vw;
   display: grid;
   grid-template-columns: repeat(10, 70px);
+}
+
+.container {
+  display: flex;
+  gap: 30px;
 }
