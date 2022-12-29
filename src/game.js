@@ -54,11 +54,11 @@ const Game = function () {
     p1ship5.coords.push([4, 2]);
     p1ship5.coords.push([4, 3]);
     p1ship5.coords.push([4, 4]);
-    p1Gameboard.board[3][0] = p1ship5;
-    p1Gameboard.board[3][1] = p1ship5;
-    p1Gameboard.board[3][2] = p1ship5;
-    p1Gameboard.board[3][3] = p1ship5;
-    p1Gameboard.board[3][4] = p1ship5;
+    p1Gameboard.board[4][0] = p1ship5;
+    p1Gameboard.board[4][1] = p1ship5;
+    p1Gameboard.board[4][2] = p1ship5;
+    p1Gameboard.board[4][3] = p1ship5;
+    p1Gameboard.board[4][4] = p1ship5;
 
     playerTwo = Player();
     // p2Gameboard = GameBoard();
@@ -96,11 +96,11 @@ const Game = function () {
     p2ship5.coords.push([4, 2]);
     p2ship5.coords.push([4, 3]);
     p2ship5.coords.push([4, 4]);
-    p2Gameboard.board[3][0] = p2ship5;
-    p2Gameboard.board[3][1] = p2ship5;
-    p2Gameboard.board[3][2] = p2ship5;
-    p2Gameboard.board[3][3] = p2ship5;
-    p2Gameboard.board[3][4] = p2ship5;
+    p2Gameboard.board[4][0] = p2ship5;
+    p2Gameboard.board[4][1] = p2ship5;
+    p2Gameboard.board[4][2] = p2ship5;
+    p2Gameboard.board[4][3] = p2ship5;
+    p2Gameboard.board[4][4] = p2ship5;
   };
 
   return { swapPlayer, setUpGame, p1Gameboard, p2Gameboard };

@@ -17,3 +17,7 @@
   display: flex;
   gap: 30px;
 }
+
+.ship {
+  background-color: aqua;
+}

@@ -132,7 +132,10 @@ const GameBoard = function () {
         let individualSquare = document.createElement("div");
         individualSquare.classList.add("individual-square");
         boardContainer.appendChild(individualSquare);
-        individualSquare.innerHTML = innerSquare;
+        if (innerSquare[0] != " ") {
+          console.log("yes");
+          individualSquare.classList.add("ship");
+        }
       });
     });
   };
