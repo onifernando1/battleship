@@ -31,8 +31,9 @@ const GameBoard = function () {
   const setUpClickToHit = function () {
     let squares = document.getElementsByClassName("individual-square");
     for (let i = 0; i < squares.length; i++) {
+      // squares[i].addEventListener("click", clickToAttack());
       squares[i].addEventListener("click", () => {
-        console.log("HI");
+        console.log("Attack");
       });
     }
   };
@@ -98,6 +99,12 @@ const GameBoard = function () {
       if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
     }
   }
+
+  const clickToAttack = function (coords, opponentGameBoard) {
+    if (opponentGameBoard.board[coords[0]][coords[1]] == "") {
+      console.log("Blank");
+    }
+  };
 
   const receiveAttack = function (ship, coords) {
     if (matchMove(ship.coords, coords)) {
