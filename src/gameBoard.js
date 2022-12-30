@@ -37,7 +37,7 @@ const GameBoard = function () {
         let tempship = board[temp[1]][temp[0]];
         console.log(temp);
         console.log(tempship);
-        receiveAttack(classToCoords(squares[i]));
+        receiveAttack(classToCoords(squares[i]), squares[i]);
       });
     }
   };
@@ -110,7 +110,11 @@ const GameBoard = function () {
     }
   };
 
-  const receiveAttack = function (coords) {
+  const displayHit = function (square) {
+    square.classList.add("hit");
+  };
+
+  const receiveAttack = function (coords, square) {
     let ship = board[coords[1]][coords[0]]; // x and y must be swapped for game board
     console.log(`ship ${ship}`);
 
@@ -124,6 +128,7 @@ const GameBoard = function () {
       swappedCoords.push(coords[0]);
       if (matchMove(ship.coords, swappedCoords)) {
         ship.hit();
+        displayHit(square);
         console.log("hit");
         swappedCoords = [];
       }
@@ -178,7 +183,7 @@ const GameBoard = function () {
     let y = "oops"; // to stop errors
     if (classes.length >= 3 && classes[2] != "ship") {
       y = classes[2];
-    } else if (classes.length == 3 && classes[2] == "ship") {
+    } else if (classes.length >= 3 && classes[2] == "ship") {
       y = classes[1];
     } else if (classes.length == 2) {
       y = classes[1];
