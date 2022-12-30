@@ -128,8 +128,8 @@ const GameBoard = function () {
         if (ship.isSunk()) {
           shipSunk(ship);
           sunkShips.push(ship);
-          console.log(`sunk ships array length ${sunkShips}`);
         }
+        allSunk();
         console.log("hit");
         swappedCoords = [];
       }
@@ -140,19 +140,24 @@ const GameBoard = function () {
   };
 
   const allSunk = function () {
-    let allShipsSunk = [];
-    currentShips.forEach((ship) => {
-      if (ship.sunk == false) {
-        allShipsSunk.push(false);
-      } else {
-        allShipsSunk.push(true);
-      }
-    });
-
-    if (allShipsSunk.includes(false)) {
-      return false;
-    } else {
+    // let allShipsSunk = [];
+    // currentShips.forEach((ship) => {
+    //   if (ship.sunk == false) {
+    //     allShipsSunk.push(false);
+    //   } else {
+    //     allShipsSunk.push(true);
+    //   }
+    // });
+    // if (allShipsSunk.includes(false)) {
+    //   return false;
+    // } else {
+    //   return true;
+    // }
+    if (sunkShips.length == 5) {
+      alert("DONE!");
       return true;
+    } else {
+      return false;
     }
   };
 
