@@ -143,17 +143,19 @@ const GameBoard = function () {
     let boardContainer = document.createElement("div");
     boardContainer.classList.add("board-container");
     container.appendChild(boardContainer);
-    board.forEach((board) => {
-      board.forEach((innerSquare) => {
+    for (let i = 0; i < board.length; i++) {
+      for (let a = 0; a < board.length; a++) {
         let individualSquare = document.createElement("div");
         individualSquare.classList.add("individual-square");
+        individualSquare.classList.add(a); // x
+        individualSquare.classList.add(i); // y
+        console.log("in");
         boardContainer.appendChild(individualSquare);
-        if (innerSquare[0] != " ") {
-          console.log("yes");
+        if (board[i][a] != " ") {
           individualSquare.classList.add("ship");
         }
-      });
-    });
+      }
+    }
   };
 
   return {
@@ -174,3 +176,15 @@ const GameBoard = function () {
 };
 
 export { GameBoard };
+
+// board.forEach((board) => {
+//   board.forEach((innerSquare) => {
+//     let individualSquare = document.createElement("div");
+//     individualSquare.classList.add("individual-square");
+//     boardContainer.appendChild(individualSquare);
+//     if (innerSquare[0] != " ") {
+//       console.log("yes");
+//       individualSquare.classList.add("ship");
+//     }
+//   });
+// });
