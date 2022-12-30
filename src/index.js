@@ -20,6 +20,6 @@ import { Game } from "./game";
 const game = Game();
 game.setUpGame();
 game.p1Gameboard.drawBoard();
-game.p2Gameboard.drawBoard();
+game.p2Gameboard.drawComputerBoard();
 game.p1Gameboard.setUpClickToHit();
 game.p2Gameboard.setUpClickToHit();

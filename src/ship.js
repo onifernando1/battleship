@@ -9,23 +9,19 @@ const Ship = function (length) {
   };
 
   const isSunk = function () {
-    console.log("called");
     console.log(length);
     console.log(numberOfHits);
-    if (length == numberOfHits) {
-      sunk = true;
-      console.log("true");
 
-      alert(sunk);
-      return sunk;
+    if (numberOfHits >= length) {
+      sunk = true;
+      console.log(`ship.sunk in original ${sunk}`);
+      return true;
     } else {
       console.log("false");
-      sunk = false;
-      return sunk;
     }
   };
 
-  return { shipLength, numberOfHits, isSunk, hit, coords, length };
+  return { shipLength, numberOfHits, isSunk, hit, coords, length, sunk };
 };
 
 export { Ship };

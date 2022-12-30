@@ -103,22 +103,33 @@ const GameBoard = function () {
     square.classList.add("hit");
   };
 
+  const shipSunk = function (ship) {
+    for (let i = 0; i < ship.coords.length; i++) {
+      let x = ship.coords[i][0];
+      let y = ship.coords[i][1];
+    }
+  };
+
   const receiveAttack = function (coords, square) {
     let ship = board[coords[1]][coords[0]]; // x and y must be swapped for game board
-    console.log(`ship ${ship}`);
 
     if (ship == " ") {
       missedCoords.push(coords);
       console.log("miss");
-      console.log(`ship ${ship}`);
     } else {
       let swappedCoords = [];
       swappedCoords.push(coords[1]);
       swappedCoords.push(coords[0]);
       if (matchMove(ship.coords, swappedCoords)) {
         ship.hit();
-        ship.isSunk();
         displayHit(square);
+        ship.isSunk();
+        console.log(`isSUnk ${ship.isSunk()}`);
+        if (ship.isSunk()) {
+          shipSunk(ship);
+          sunkShips.push(ship);
+          console.log(`sunk ships array length ${sunkShips}`);
+        }
         console.log("hit");
         swappedCoords = [];
       }
@@ -164,6 +175,22 @@ const GameBoard = function () {
     }
   };
 
+  const drawComputerBoard = function () {
+    const container = document.getElementsByClassName("container")[0];
+    let boardContainer = document.createElement("div");
+    boardContainer.classList.add("board-container");
+    container.appendChild(boardContainer);
+    for (let i = 0; i < board.length; i++) {
+      for (let a = 0; a < board.length; a++) {
+        let individualSquare = document.createElement("div");
+        individualSquare.classList.add("individual-square");
+        individualSquare.classList.add(a); // x
+        individualSquare.classList.add(i); // y
+        boardContainer.appendChild(individualSquare);
+      }
+    }
+  };
+
   const classToCoords = function (individualSquare) {
     let classes = individualSquare.classList;
     let x = classes[1];
@@ -191,6 +218,8 @@ const GameBoard = function () {
     removeAllInstances,
     drawBoard,
     setUpClickToHit,
+    drawComputerBoard,
+    sunkShips,
   };
 };
 

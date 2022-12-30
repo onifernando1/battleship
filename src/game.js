@@ -61,6 +61,11 @@ const Game = function () {
     p1Gameboard.board[4][2] = p1ship5;
     p1Gameboard.board[4][3] = p1ship5;
     p1Gameboard.board[4][4] = p1ship5;
+    p1Gameboard.currentShips.push(p1ship2);
+    p1Gameboard.currentShips.push(p1ship3a);
+    p1Gameboard.currentShips.push(p1ship3b);
+    p1Gameboard.currentShips.push(p1ship4);
+    p1Gameboard.currentShips.push(p1ship5);
 
     playerTwo = Player();
     // p2Gameboard = GameBoard();
@@ -103,6 +108,12 @@ const Game = function () {
     p2Gameboard.board[4][2] = p2ship5;
     p2Gameboard.board[4][3] = p2ship5;
     p2Gameboard.board[4][4] = p2ship5;
+
+    p2Gameboard.currentShips.push(p2ship2);
+    p2Gameboard.currentShips.push(p2ship3a);
+    p2Gameboard.currentShips.push(p2ship3b);
+    p2Gameboard.currentShips.push(p2ship4);
+    p2Gameboard.currentShips.push(p2ship5);
   };
 
   return { swapPlayer, setUpGame, p1Gameboard, p2Gameboard };
