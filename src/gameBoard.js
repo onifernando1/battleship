@@ -33,7 +33,7 @@ const GameBoard = function () {
     for (let i = 0; i < squares.length; i++) {
       // squares[i].addEventListener("click", clickToAttack());
       squares[i].addEventListener("click", () => {
-        console.log("Attack");
+        classToCoords(squares[i]);
       });
     }
   };
@@ -101,7 +101,7 @@ const GameBoard = function () {
   }
 
   const clickToAttack = function (coords, opponentGameBoard) {
-    if (opponentGameBoard.board[coords[0]][coords[1]] == "") {
+    if (opponentGameBoard.board[coords[0]][coords[1]] == " ") {
       console.log("Blank");
     }
   };
@@ -156,6 +156,24 @@ const GameBoard = function () {
         }
       }
     }
+  };
+
+  const classToCoords = function (individualSquare) {
+    let classes = individualSquare.classList;
+    let x = classes[1];
+    let y = "oops"; // to stop errors
+    // console.log(x);
+    console.log(classes);
+
+    if (classes.length >= 3 && classes[2] != "ship") {
+      y = classes[2];
+    } else if (classes.length == 3 && classes[2] == "ship") {
+      y = classes[1];
+    } else if (classes.length == 2) {
+      y = classes[1];
+    }
+
+    console.log(x, y);
   };
 
   return {
