@@ -5,14 +5,21 @@ const Ship = function (length) {
   let coords = [];
 
   const hit = function () {
-    this.numberOfHits += 1;
+    numberOfHits += 1;
   };
 
-  const isSunk = function (length, numberOfHits) {
+  const isSunk = function () {
+    console.log("called");
+    console.log(length);
+    console.log(numberOfHits);
     if (length == numberOfHits) {
       sunk = true;
+      console.log("true");
+
+      alert(sunk);
       return sunk;
     } else {
+      console.log("false");
       sunk = false;
       return sunk;
     }

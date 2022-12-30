@@ -31,12 +31,7 @@ const GameBoard = function () {
   const setUpClickToHit = function () {
     let squares = document.getElementsByClassName("individual-square");
     for (let i = 0; i < squares.length; i++) {
-      // squares[i].addEventListener("click", clickToAttack());
       squares[i].addEventListener("click", () => {
-        let temp = classToCoords(squares[i]);
-        let tempship = board[temp[1]][temp[0]];
-        console.log(temp);
-        console.log(tempship);
         receiveAttack(classToCoords(squares[i]), squares[i]);
       });
     }
@@ -86,7 +81,7 @@ const GameBoard = function () {
     let match = false;
     arrayToFindMatch.forEach((move) => {
       if (move[0] == coords[0] && move[1] == coords[1]) {
-        console.log("true");
+        // console.log("true");
         match = true;
       }
     });
@@ -103,12 +98,6 @@ const GameBoard = function () {
       if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
     }
   }
-
-  const clickToAttack = function (coords, opponentGameBoard) {
-    if (opponentGameBoard.board[coords[0]][coords[1]] == " ") {
-      console.log("Blank");
-    }
-  };
 
   const displayHit = function (square) {
     square.classList.add("hit");
@@ -128,6 +117,7 @@ const GameBoard = function () {
       swappedCoords.push(coords[0]);
       if (matchMove(ship.coords, swappedCoords)) {
         ship.hit();
+        ship.isSunk();
         displayHit(square);
         console.log("hit");
         swappedCoords = [];
@@ -156,9 +146,7 @@ const GameBoard = function () {
   };
 
   const drawBoard = function () {
-    console.log("Hi");
     const container = document.getElementsByClassName("container")[0];
-    console.log(container);
     let boardContainer = document.createElement("div");
     boardContainer.classList.add("board-container");
     container.appendChild(boardContainer);
@@ -168,7 +156,6 @@ const GameBoard = function () {
         individualSquare.classList.add("individual-square");
         individualSquare.classList.add(a); // x
         individualSquare.classList.add(i); // y
-        console.log("in");
         boardContainer.appendChild(individualSquare);
         if (board[i][a] != " ") {
           individualSquare.classList.add("ship");
@@ -179,16 +166,13 @@ const GameBoard = function () {
 
   const classToCoords = function (individualSquare) {
     let classes = individualSquare.classList;
-    console.log(`classes ${classes}`);
     let x = classes[1];
     let y = "oops"; // to stop errors
     let temp = parseInt(classes[2]);
     if (parseInt(classes[2]) >= 0) {
       y = classes[2];
-      console.log("if");
     } else {
       y = classes[1];
-      console.log("else");
     }
     return [x, y];
   };
