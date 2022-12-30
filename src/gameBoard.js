@@ -28,6 +28,15 @@ const GameBoard = function () {
     }
   };
 
+  const setUpClickToHit = function () {
+    let squares = document.getElementsByClassName("individual-square");
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].addEventListener("click", () => {
+        console.log("HI");
+      });
+    }
+  };
+
   const horizontal = function (ship, startRowCoords, startColumnCoords) {
     for (let i = 0; i < ship.shipLength; i++) {
       let currentCoord = [startRowCoords, i + startColumnCoords];
@@ -153,6 +162,7 @@ const GameBoard = function () {
     matchMove,
     removeAllInstances,
     drawBoard,
+    setUpClickToHit,
   };
 };
 

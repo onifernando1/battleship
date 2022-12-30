@@ -21,3 +21,5 @@ const game = Game();
 game.setUpGame();
 game.p1Gameboard.drawBoard();
 game.p2Gameboard.drawBoard();
+game.p1Gameboard.setUpClickToHit();
+game.p1Gameboard.setUpClickToHit();
