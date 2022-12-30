@@ -179,16 +179,17 @@ const GameBoard = function () {
 
   const classToCoords = function (individualSquare) {
     let classes = individualSquare.classList;
+    console.log(`classes ${classes}`);
     let x = classes[1];
     let y = "oops"; // to stop errors
-    if (classes.length >= 3 && classes[2] != "ship") {
+    let temp = parseInt(classes[2]);
+    if (parseInt(classes[2]) >= 0) {
       y = classes[2];
-    } else if (classes.length >= 3 && classes[2] == "ship") {
+      console.log("if");
+    } else {
       y = classes[1];
-    } else if (classes.length == 2) {
-      y = classes[1];
+      console.log("else");
     }
-
     return [x, y];
   };
 
