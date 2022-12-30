@@ -33,7 +33,11 @@ const GameBoard = function () {
     for (let i = 0; i < squares.length; i++) {
       // squares[i].addEventListener("click", clickToAttack());
       squares[i].addEventListener("click", () => {
-        classToCoords(squares[i]);
+        let temp = classToCoords(squares[i]);
+        let tempship = board[temp[1]][temp[0]];
+        console.log(temp);
+        console.log(tempship);
+        receiveAttack(classToCoords(squares[i]));
       });
     }
   };
@@ -106,14 +110,24 @@ const GameBoard = function () {
     }
   };
 
-  const receiveAttack = function (ship, coords) {
-    if (matchMove(ship.coords, coords)) {
-      ship.hit();
-      console.log("hit");
-    } else {
-      missedCoords.push(coords);
-    }
+  const receiveAttack = function (coords) {
+    let ship = board[coords[1]][coords[0]]; // x and y must be swapped for game board
+    console.log(`ship ${ship}`);
 
+    if (ship == " ") {
+      missedCoords.push(coords);
+      console.log("miss");
+      console.log(`ship ${ship}`);
+    } else {
+      let swappedCoords = [];
+      swappedCoords.push(coords[1]);
+      swappedCoords.push(coords[0]);
+      if (matchMove(ship.coords, swappedCoords)) {
+        ship.hit();
+        console.log("hit");
+        swappedCoords = [];
+      }
+    }
     if (matchMove(potentialMoves, coords)) {
       removeAllInstances(potentialMoves, coords); // need to code this
     }
@@ -162,9 +176,6 @@ const GameBoard = function () {
     let classes = individualSquare.classList;
     let x = classes[1];
     let y = "oops"; // to stop errors
-    // console.log(x);
-    console.log(classes);
-
     if (classes.length >= 3 && classes[2] != "ship") {
       y = classes[2];
     } else if (classes.length == 3 && classes[2] == "ship") {
@@ -173,7 +184,7 @@ const GameBoard = function () {
       y = classes[1];
     }
 
-    console.log(x, y);
+    return [x, y];
   };
 
   return {
