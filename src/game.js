@@ -26,12 +26,14 @@ const Game = function () {
     p1Gameboard.board[0][0] = p1ship2;
     p1Gameboard.board[0][1] = p1ship2;
     const p1ship3a = Ship(3);
+    console.log(`abc${p1ship3a.length}`);
+
     p1ship3a.coords.push([1, 0]);
     p1ship3a.coords.push([1, 1]);
     p1ship3a.coords.push([1, 2]);
-    p1Gameboard.board[1][0] = p1ship2;
-    p1Gameboard.board[1][1] = p1ship2;
-    p1Gameboard.board[1][2] = p1ship2;
+    p1Gameboard.board[1][0] = p1ship3a;
+    p1Gameboard.board[1][1] = p1ship3a;
+    p1Gameboard.board[1][2] = p1ship3a;
     const p1ship3b = Ship(3);
     p1ship3b.coords.push([2, 0]);
     p1ship3b.coords.push([2, 1]);

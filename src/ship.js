@@ -18,7 +18,7 @@ const Ship = function (length) {
     }
   };
 
-  return { shipLength, numberOfHits, isSunk, hit, coords };
+  return { shipLength, numberOfHits, isSunk, hit, coords, length };
 };
 
 export { Ship };
