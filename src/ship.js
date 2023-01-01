@@ -9,15 +9,15 @@ const Ship = function (length) {
   };
 
   const isSunk = function () {
-    console.log(length);
-    console.log(numberOfHits);
+    // console.log(length);
+    // console.log(numberOfHits);
 
     if (numberOfHits >= length) {
       sunk = true;
-      console.log(`ship.sunk in original ${sunk}`);
+      // console.log(`ship.sunk in original ${sunk}`);
       return true;
     } else {
-      console.log("false");
+      // console.log("false");
     }
   };
 

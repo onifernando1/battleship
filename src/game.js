@@ -8,6 +8,8 @@ const Game = function () {
   let currentPlayer = playerOne;
   let p1Gameboard = GameBoard();
   let p2Gameboard = GameBoard();
+  p1Gameboard.getPotentialMoves();
+  p2Gameboard.getPotentialMoves();
 
   const swapPlayer = function () {
     if (currentPlayer == playerOne) {
@@ -26,7 +28,7 @@ const Game = function () {
     p1Gameboard.board[0][0] = p1ship2;
     p1Gameboard.board[0][1] = p1ship2;
     const p1ship3a = Ship(3);
-    console.log(`abc${p1ship3a.length}`);
+    // console.log(`abc${p1ship3a.length}`);
 
     p1ship3a.coords.push([1, 0]);
     p1ship3a.coords.push([1, 1]);

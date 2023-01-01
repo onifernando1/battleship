@@ -113,6 +113,13 @@ const GameBoard = function () {
   const receiveAttack = function (coords, square) {
     let ship = board[coords[1]][coords[0]]; // x and y must be swapped for game board
 
+    // if not a legal move, retry
+    console.log(`coords = ${coords}`);
+    if (matchMove(potentialMoves, coords) == false) {
+      console.log("Retry bro");
+      console.log(potentialMoves);
+    }
+
     if (ship == " ") {
       missedCoords.push(coords);
       console.log("miss");
@@ -124,7 +131,6 @@ const GameBoard = function () {
         ship.hit();
         displayHit(square);
         ship.isSunk();
-        console.log(`isSUnk ${ship.isSunk()}`);
         if (ship.isSunk()) {
           shipSunk(ship);
           sunkShips.push(ship);
