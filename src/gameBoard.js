@@ -118,30 +118,30 @@ const GameBoard = function () {
     if (matchMove(potentialMoves, coords) == false) {
       console.log("Retry bro");
       console.log(potentialMoves);
-    }
-
-    if (ship == " ") {
-      missedCoords.push(coords);
-      console.log("miss");
     } else {
-      let swappedCoords = [];
-      swappedCoords.push(coords[1]);
-      swappedCoords.push(coords[0]);
-      if (matchMove(ship.coords, swappedCoords)) {
-        ship.hit();
-        displayHit(square);
-        ship.isSunk();
-        if (ship.isSunk()) {
-          shipSunk(ship);
-          sunkShips.push(ship);
+      if (ship == " ") {
+        missedCoords.push(coords);
+        console.log("miss");
+      } else {
+        let swappedCoords = [];
+        swappedCoords.push(coords[1]);
+        swappedCoords.push(coords[0]);
+        if (matchMove(ship.coords, swappedCoords)) {
+          ship.hit();
+          displayHit(square);
+          ship.isSunk();
+          if (ship.isSunk()) {
+            shipSunk(ship);
+            sunkShips.push(ship);
+          }
+          allSunk();
+          console.log("hit");
+          swappedCoords = [];
         }
-        allSunk();
-        console.log("hit");
-        swappedCoords = [];
       }
-    }
-    if (matchMove(potentialMoves, coords)) {
-      removeAllInstances(potentialMoves, coords); // need to code this
+      if (matchMove(potentialMoves, coords)) {
+        removeAllInstances(potentialMoves, coords); // need to code this
+      }
     }
   };
 
