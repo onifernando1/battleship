@@ -110,6 +110,10 @@ const GameBoard = function () {
     }
   };
 
+  const displayMiss = function (square) {
+    square.classList.add("miss");
+  };
+
   const receiveAttack = function (coords, square) {
     let ship = board[coords[1]][coords[0]]; // x and y must be swapped for game board
 
@@ -122,6 +126,7 @@ const GameBoard = function () {
       if (ship == " ") {
         missedCoords.push(coords);
         console.log("miss");
+        displayMiss(square);
       } else {
         let swappedCoords = [];
         swappedCoords.push(coords[1]);
