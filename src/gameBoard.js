@@ -80,12 +80,6 @@ const GameBoard = function (playerOne, playerTwo) {
     }
   };
 
-  function removeAllInstances(arr, item) {
-    for (let i = arr.length; i--; ) {
-      if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
-    }
-  }
-
   const shipSunk = function (ship) {
     for (let i = 0; i < ship.coords.length; i++) {
       let x = ship.coords[i][0];
@@ -146,7 +140,6 @@ const GameBoard = function (playerOne, playerTwo) {
     allSunk,
     getPotentialMoves,
     potentialMoves,
-    removeAllInstances,
     drawBoard,
     drawComputerBoard,
     sunkShips,

@@ -145,7 +145,6 @@ const Game = function () {
           ship.hit();
           displayHit(square);
           ship.isSunk();
-          swapPlayer(); // swap
           if (ship.isSunk()) {
             shipSunk(ship);
             sunkShips.push(ship);
@@ -153,6 +152,7 @@ const Game = function () {
           // allSunk(); // add back in
           console.log("hit");
           swappedCoords = [];
+          swapPlayer(); // swap
         }
       }
       if (matchMove(potentialMoves, coords)) {
@@ -166,6 +166,21 @@ const Game = function () {
       if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
     }
   }
+
+  const coordsToSquare = function (coords) {
+    let coX = coords[0];
+    let coY = coords[1];
+    let squares = document.getElementsByClassName("individual-square");
+    for (let i = 0; i < squares.length; i++) {
+      // console.log(squares[i].classList);
+      let randomAttackCoords = classToCoords(squares[i]);
+      if (coX == randomAttackCoords[0] && coY == randomAttackCoords[1]) {
+        let squareToAttack = squares[i];
+        console.log(squareToAttack);
+        return squareToAttack;
+      }
+    }
+  };
 
   const matchMove = function (arrayToFindMatch, coords) {
     let match = false;
@@ -221,11 +236,19 @@ const Game = function () {
 
   const swapPlayer = function () {
     if (currentPlayer == playerOne) {
-      // disableClick();
+      disableClick();
       currentPlayer = playerTwo;
-      // currentPlayer.randomAttack();
+      let randomCoords = currentPlayer.randomAttack(p1Gameboard);
+      let square = coordsToSquare(randomCoords);
+
+      receiveAttack(
+        randomCoords,
+        square,
+        p1Gameboard.board,
+        p1Gameboard.potentialMoves
+      );
     } else {
-      // enableClick();
+      enableClick();
       currentPlayer = playerOne;
     }
     console.log("swap");
