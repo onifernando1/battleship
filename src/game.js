@@ -2,11 +2,15 @@ import { Ship } from "./ship";
 import { GameBoard } from "./gameBoard";
 import { Player } from "./player";
 
+// need to change ids on each gameboard
+// add in computer algo
+// asd
+
 const Game = function () {
   let playerOne = Player();
-  playerOne.name = "jeff";
+  playerOne.name = "playerOne";
   let playerTwo = Player();
-  let currentPlayer = playerOne;
+  playerTwo.name = "playerTwo";
   let p1Gameboard = GameBoard(playerOne, playerTwo);
   let p2Gameboard = GameBoard(playerOne, playerTwo);
   p1Gameboard.getPotentialMoves();
