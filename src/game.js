@@ -153,7 +153,6 @@ const Game = function () {
               p1Gameboard.sunkShips.push(ship);
             }
           }
-          // allSunk(); // add back in
           console.log("hit");
           swappedCoords = [];
           swapPlayer(); // swap
@@ -251,7 +250,20 @@ const Game = function () {
     }
   };
 
+  const allSunk = function () {
+    if (
+      p1Gameboard.sunkShips.length == 5 ||
+      p2Gameboard.sunkShips.length == 5
+    ) {
+      alert("DONE!");
+      return true;
+    } else {
+      return false;
+    }
+  };
+
   const swapPlayer = function () {
+    allSunk();
     if (currentPlayer == playerOne) {
       disableClick();
       currentPlayer = playerTwo;

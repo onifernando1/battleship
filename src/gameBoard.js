@@ -80,22 +80,6 @@ const GameBoard = function (playerOne, playerTwo) {
     }
   };
 
-  const shipSunk = function (ship) {
-    for (let i = 0; i < ship.coords.length; i++) {
-      let x = ship.coords[i][0];
-      let y = ship.coords[i][1];
-    }
-  };
-
-  const allSunk = function () {
-    if (sunkShips.length == 5) {
-      alert("DONE!");
-      return true;
-    } else {
-      return false;
-    }
-  };
-
   const drawBoard = function () {
     const container = document.getElementsByClassName("container")[0];
     let boardContainer = document.createElement("div");
