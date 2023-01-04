@@ -67,16 +67,6 @@ const GameBoard = function () {
     }
   };
 
-  const checkNestedArray = function (array, coords) {
-    let match = false;
-    for (let i = 0; i < array.length; i++) {
-      if (array[i].includes(coords[0]) && array[i].includes(coords[1])) {
-        match = true;
-      }
-    }
-    return match;
-  };
-
   const matchMove = function (arrayToFindMatch, coords) {
     let match = false;
     arrayToFindMatch.forEach((move) => {
@@ -103,15 +93,15 @@ const GameBoard = function () {
     square.classList.add("hit");
   };
 
+  const displayMiss = function (square) {
+    square.classList.add("miss");
+  };
+
   const shipSunk = function (ship) {
     for (let i = 0; i < ship.coords.length; i++) {
       let x = ship.coords[i][0];
       let y = ship.coords[i][1];
     }
-  };
-
-  const displayMiss = function (square) {
-    square.classList.add("miss");
   };
 
   const receiveAttack = function (coords, square) {
@@ -121,7 +111,6 @@ const GameBoard = function () {
     console.log(`coords = ${coords}`);
     if (matchMove(potentialMoves, coords) == false) {
       console.log("Retry bro");
-      console.log(potentialMoves);
     } else {
       if (ship == " ") {
         missedCoords.push(coords);
@@ -151,19 +140,6 @@ const GameBoard = function () {
   };
 
   const allSunk = function () {
-    // let allShipsSunk = [];
-    // currentShips.forEach((ship) => {
-    //   if (ship.sunk == false) {
-    //     allShipsSunk.push(false);
-    //   } else {
-    //     allShipsSunk.push(true);
-    //   }
-    // });
-    // if (allShipsSunk.includes(false)) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
     if (sunkShips.length == 5) {
       alert("DONE!");
       return true;
@@ -241,14 +217,12 @@ const GameBoard = function () {
 
 export { GameBoard };
 
-// board.forEach((board) => {
-//   board.forEach((innerSquare) => {
-//     let individualSquare = document.createElement("div");
-//     individualSquare.classList.add("individual-square");
-//     boardContainer.appendChild(individualSquare);
-//     if (innerSquare[0] != " ") {
-//       console.log("yes");
-//       individualSquare.classList.add("ship");
+// const checkNestedArray = function (array, coords) {
+//   let match = false;
+//   for (let i = 0; i < array.length; i++) {
+//     if (array[i].includes(coords[0]) && array[i].includes(coords[1])) {
+//       match = true;
 //     }
-//   });
-// });
+//   }
+//   return match;
+// };

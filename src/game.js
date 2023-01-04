@@ -3,8 +3,8 @@ import { GameBoard } from "./gameBoard";
 import { Player } from "./player";
 
 const Game = function () {
-  let playerOne = "";
-  let playerTwo = "";
+  let playerOne = Player();
+  let playerTwo = Player();
   let currentPlayer = playerOne;
   let p1Gameboard = GameBoard();
   let p2Gameboard = GameBoard();
@@ -19,8 +19,7 @@ const Game = function () {
     }
   };
 
-  const setUpGame = function () {
-    playerOne = Player();
+  const setUpPlayerOneShips = function () {
     // p1Gameboard = GameBoard();
     const p1ship2 = Ship(2);
     p1ship2.coords.push([0, 0]);
@@ -68,9 +67,9 @@ const Game = function () {
     p1Gameboard.currentShips.push(p1ship3b);
     p1Gameboard.currentShips.push(p1ship4);
     p1Gameboard.currentShips.push(p1ship5);
+  };
 
-    playerTwo = Player();
-    // p2Gameboard = GameBoard();
+  const setUpPlayerTwoShips = function () {
     const p2ship2 = Ship(2);
     p2ship2.coords.push([0, 0]);
     p2ship2.coords.push([0, 1]);
@@ -116,6 +115,15 @@ const Game = function () {
     p2Gameboard.currentShips.push(p2ship3b);
     p2Gameboard.currentShips.push(p2ship4);
     p2Gameboard.currentShips.push(p2ship5);
+  };
+
+  const setUpGame = function () {
+    setUpPlayerOneShips();
+    setUpPlayerTwoShips();
+    p1Gameboard.drawBoard();
+    p2Gameboard.drawComputerBoard();
+    p1Gameboard.setUpClickToHit();
+    p2Gameboard.setUpClickToHit();
   };
 
   return { swapPlayer, setUpGame, p1Gameboard, p2Gameboard };
