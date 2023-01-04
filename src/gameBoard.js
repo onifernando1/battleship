@@ -38,7 +38,7 @@ const GameBoard = function (playerOne, playerTwo) {
   };
 
   const setUpClickToHit = function () {
-    let squares = document.getElementsByClassName("individual-square");
+    let squares = document.getElementsByClassName("computer-square");
     for (let i = 0; i < squares.length; i++) {
       squares[i].addEventListener("click", () => {
         receiveAttack(classToCoords(squares[i]), squares[i]);
@@ -186,7 +186,7 @@ const GameBoard = function (playerOne, playerTwo) {
     for (let i = 0; i < board.length; i++) {
       for (let a = 0; a < board.length; a++) {
         let individualSquare = document.createElement("div");
-        individualSquare.classList.add("individual-square");
+        individualSquare.classList.add("computer-square");
         individualSquare.classList.add(a); // x
         individualSquare.classList.add(i); // y
         boardContainer.appendChild(individualSquare);

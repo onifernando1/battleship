@@ -1,11 +1,13 @@
-.individual-square {
+.individual-square,
+.computer-square {
   background-color: white;
   margin: 5px;
   height: 50px;
   width: 50px;
 }
 
-.individual-square:hover {
+.individual-square:hover,
+.computer-square:hover {
   background-color: rgb(221, 51, 51);
 }
 

@@ -3,8 +3,12 @@ import { GameBoard } from "./gameBoard";
 import { Player } from "./player";
 
 // need to change ids on each gameboard
-// add in computer algo
-// asd
+// add in swaps
+// dont allow attacking own gameboard
+// make computer make move on its go
+//set timeout to delay move
+// display change
+// end at win
 
 const Game = function () {
   let playerOne = Player();
@@ -120,7 +124,7 @@ const Game = function () {
     setUpPlayerTwoShips();
     p1Gameboard.drawBoard();
     p2Gameboard.drawComputerBoard();
-    p1Gameboard.setUpClickToHit();
+    // p1Gameboard.setUpClickToHit();
     p2Gameboard.setUpClickToHit();
   };
 
