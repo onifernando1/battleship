@@ -12,13 +12,14 @@ import { Game } from "./game";
 // // ship.coords.push([0, 1]);
 // // gb.getPotentialMoves();
 // // let moves = gb.potentialMoves;
-// // console.log(gb.potentialMoves.length);
+// // console.log(gb.potentialMoves.length) ;
 // // gb.receiveAttack(ship, [0, 3]);
 // // console.log(gb.potentialMoves.length);
 // gb1.drawBoard();
 // gb2.drawBoard();
 const game = Game();
 game.setUpGame();
+
 // game.p1Gameboard.drawBoard();
 // game.p2Gameboard.drawComputerBoard();
 // game.p1Gameboard.setUpClickToHit();

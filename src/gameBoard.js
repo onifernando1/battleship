@@ -1,11 +1,10 @@
-//check for legal moves
-
-const GameBoard = function () {
+const GameBoard = function (playerOne, playerTwo) {
   let shipPlacementMode = "horizontal";
   let currentShips = [];
   let sunkShips = [];
   const missedCoords = [];
   let potentialMoves = [];
+  let currentPlayer = playerOne;
 
   let board = [
     [[" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "], [" "]],
@@ -26,6 +25,16 @@ const GameBoard = function () {
         potentialMoves.push([a, i]);
       }
     }
+  };
+
+  const swapPlayer = function () {
+    if (currentPlayer == playerOne) {
+      currentPlayer = playerTwo;
+    } else {
+      currentPlayer = playerOne;
+    }
+    console.log("swap");
+    console.log(currentPlayer);
   };
 
   const setUpClickToHit = function () {
@@ -116,6 +125,7 @@ const GameBoard = function () {
         missedCoords.push(coords);
         console.log("miss");
         displayMiss(square);
+        swapPlayer();
       } else {
         let swappedCoords = [];
         swappedCoords.push(coords[1]);
@@ -124,6 +134,7 @@ const GameBoard = function () {
           ship.hit();
           displayHit(square);
           ship.isSunk();
+          swapPlayer(); // swap
           if (ship.isSunk()) {
             shipSunk(ship);
             sunkShips.push(ship);

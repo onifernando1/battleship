@@ -4,20 +4,14 @@ import { Player } from "./player";
 
 const Game = function () {
   let playerOne = Player();
+  playerOne.name = "jeff";
   let playerTwo = Player();
   let currentPlayer = playerOne;
-  let p1Gameboard = GameBoard();
-  let p2Gameboard = GameBoard();
+  let p1Gameboard = GameBoard(playerOne, playerTwo);
+  let p2Gameboard = GameBoard(playerOne, playerTwo);
   p1Gameboard.getPotentialMoves();
   p2Gameboard.getPotentialMoves();
-
-  const swapPlayer = function () {
-    if (currentPlayer == playerOne) {
-      currentPlayer = playerTwo;
-    } else {
-      currentPlayer = playerOne;
-    }
-  };
+  let win = false;
 
   const setUpPlayerOneShips = function () {
     // p1Gameboard = GameBoard();
@@ -126,7 +120,7 @@ const Game = function () {
     p2Gameboard.setUpClickToHit();
   };
 
-  return { swapPlayer, setUpGame, p1Gameboard, p2Gameboard };
+  return { setUpGame, p1Gameboard, p2Gameboard };
 };
 
 export { Game };
