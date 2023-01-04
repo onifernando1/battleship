@@ -147,7 +147,11 @@ const Game = function () {
           ship.isSunk();
           if (ship.isSunk()) {
             shipSunk(ship);
-            sunkShips.push(ship);
+            if (currentPlayer == playerOne) {
+              p2Gameboard.sunkShips.push(ship);
+            } else {
+              p1Gameboard.sunkShips.push(ship);
+            }
           }
           // allSunk(); // add back in
           console.log("hit");
@@ -167,12 +171,25 @@ const Game = function () {
     }
   }
 
+  const shipSunk = function (ship) {
+    for (let i = 0; i < ship.coords.length; i++) {
+      let x = ship.coords[i][1];
+      let y = ship.coords[i][0];
+      let square = coordsToSquare([x, y]);
+      square.classList.add("sunk");
+    }
+  };
+
   const coordsToSquare = function (coords) {
     let coX = coords[0];
     let coY = coords[1];
-    let squares = document.getElementsByClassName("individual-square");
+    let squares = "";
+    if (currentPlayer == playerTwo) {
+      squares = document.getElementsByClassName("individual-square");
+    } else {
+      squares = document.getElementsByClassName("computer-square");
+    }
     for (let i = 0; i < squares.length; i++) {
-      // console.log(squares[i].classList);
       let randomAttackCoords = classToCoords(squares[i]);
       if (coX == randomAttackCoords[0] && coY == randomAttackCoords[1]) {
         let squareToAttack = squares[i];
