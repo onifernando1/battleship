@@ -43,3 +43,7 @@
 .miss {
   background-color: blue;
 }
+
+.disabled {
+  pointer-events: none;
+}

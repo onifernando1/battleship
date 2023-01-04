@@ -20,6 +20,7 @@ const Game = function () {
   p1Gameboard.getPotentialMoves();
   p2Gameboard.getPotentialMoves();
   let win = false;
+  let currentPlayer = playerOne;
 
   const setUpPlayerOneShips = function () {
     // p1Gameboard = GameBoard();
@@ -119,13 +120,137 @@ const Game = function () {
     p2Gameboard.currentShips.push(p2ship5);
   };
 
+  const receiveAttack = function (coords, square, board, potentialMoves) {
+    let ship = board[coords[1]][coords[0]]; // x and y must be swapped for game board
+
+    // if not a legal move, retry
+    console.log(`coords = ${coords}`);
+    if (matchMove(potentialMoves, coords) == false) {
+      console.log("Retry bro");
+    } else {
+      if (ship == " ") {
+        if (currentPlayer == playerOne) {
+          p2Gameboard.missedCoords.push(coords);
+        } else {
+          p1Gameboard.missedCoords.push(coords);
+        }
+        console.log("miss");
+        displayMiss(square);
+        swapPlayer();
+      } else {
+        let swappedCoords = [];
+        swappedCoords.push(coords[1]);
+        swappedCoords.push(coords[0]);
+        if (matchMove(ship.coords, swappedCoords)) {
+          ship.hit();
+          displayHit(square);
+          ship.isSunk();
+          swapPlayer(); // swap
+          if (ship.isSunk()) {
+            shipSunk(ship);
+            sunkShips.push(ship);
+          }
+          // allSunk(); // add back in
+          console.log("hit");
+          swappedCoords = [];
+        }
+      }
+      if (matchMove(potentialMoves, coords)) {
+        removeAllInstances(potentialMoves, coords); // need to code this
+      }
+    }
+  };
+
+  function removeAllInstances(arr, item) {
+    for (let i = arr.length; i--; ) {
+      if (arr[i][0] == item[0] && arr[i][1] == item[1]) arr.splice(i, 1);
+    }
+  }
+
+  const matchMove = function (arrayToFindMatch, coords) {
+    let match = false;
+    arrayToFindMatch.forEach((move) => {
+      if (move[0] == coords[0] && move[1] == coords[1]) {
+        // console.log("true");
+        match = true;
+      }
+    });
+
+    if (match == true) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const setUpClickToHit = function () {
+    let squares = document.getElementsByClassName("computer-square");
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].addEventListener("click", () => {
+        receiveAttack(
+          classToCoords(squares[i]),
+          squares[i],
+          p2Gameboard.board,
+          p2Gameboard.potentialMoves
+        );
+      });
+    }
+  };
+
+  const displayHit = function (square) {
+    square.classList.add("hit");
+  };
+
+  const displayMiss = function (square) {
+    square.classList.add("miss");
+  };
+
+  const disableClick = function () {
+    let squares = document.getElementsByClassName("computer-square");
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].classList.add("disabled");
+    }
+  };
+
+  const enableClick = function () {
+    let squares = document.getElementsByClassName("computer-square");
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].classList.remove("disabled");
+    }
+  };
+
+  const swapPlayer = function () {
+    if (currentPlayer == playerOne) {
+      // disableClick();
+      currentPlayer = playerTwo;
+      // currentPlayer.randomAttack();
+    } else {
+      // enableClick();
+      currentPlayer = playerOne;
+    }
+    console.log("swap");
+    console.log(currentPlayer);
+  };
+
+  const classToCoords = function (individualSquare) {
+    let classes = individualSquare.classList;
+    let x = classes[1];
+    let y = "oops"; // to stop errors
+    let temp = parseInt(classes[2]);
+    if (parseInt(classes[2]) >= 0) {
+      y = classes[2];
+    } else {
+      y = classes[1];
+    }
+    return [x, y];
+  };
+
   const setUpGame = function () {
     setUpPlayerOneShips();
     setUpPlayerTwoShips();
     p1Gameboard.drawBoard();
     p2Gameboard.drawComputerBoard();
-    // p1Gameboard.setUpClickToHit();
-    p2Gameboard.setUpClickToHit();
+    setUpClickToHit();
   };
 
   return { setUpGame, p1Gameboard, p2Gameboard };
